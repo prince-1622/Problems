@@ -14,21 +14,21 @@ class Solution {
     }
     public boolean isAnagram(String s, String t) {
         if(s.length() != t.length()) return false;
-        HashMap<Character, Integer> mp1 = makeFreqMap(s);
-        HashMap<Character, Integer> mp2 = makeFreqMap(t);
-        return mp1.equals(mp2);
+         HashMap<Character, Integer> mp = makeFreqMap(s);
+        // HashMap<Character, Integer> mp2 = makeFreqMap(t);
+        // return mp1.equals(mp2);
 
         //space optimised
-//         for(int i=0; i<t.length();i++){
-//             Character ch = t.charAt(i);
-//             if(!mp.containsKey(ch))
-//                 return false;
-//             int currFreq = mp.get(ch);
-//             mp.put(ch, currFreq+1);
-//         }
-//         for(var i: mp.values()){
-//             if(i != 0) return false;
-//         }
-//         return true;
+        for(int i=0; i<t.length();i++){
+            Character ch = t.charAt(i);
+            if(!mp.containsKey(ch))
+                return false;
+            int currFreq = mp.get(ch);
+            mp.put(ch, currFreq-1);
+        }
+        for(var i: mp.values()){
+            if(i != 0) return false;
+        }
+        return true;
     }
 }
